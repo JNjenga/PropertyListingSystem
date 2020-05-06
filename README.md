@@ -5,7 +5,7 @@ This is a property listing systems
 
 To make your contributions :
 1. Clone the repository
-    `git clone https:github.com/jnjenga/PropertyListingSystem`
+    - `git clone https:github.com/jnjenga/PropertyListingSystem`
 2. Create a branch for your module if it doesn't exist yet
     `git checkout -b <module-name>`
     - Push your module to remote
