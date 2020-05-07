@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class tbl_property_description extends Model
+class PropertyDescription extends Model
 {
     //
 }
