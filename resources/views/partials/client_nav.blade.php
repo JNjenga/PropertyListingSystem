@@ -14,7 +14,7 @@
               </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Listings</a>
+          <a class="nav-link" href="/listings">Listings</a>
         </li>
       </ul>
     </div>
