@@ -12,7 +12,53 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.index');
 });
+// Customer
+
+Route::get('/listings', function () {
+    return view('pages.customer.view_listings');
+});
+
+// ------------------------ADMIN---------------------------
+Route::get('/admin', function () {
+    return view('layouts.admin_layout');
+});
+
+// Reports
+
+Route::get('/admin/reports', function () {
+    return view('pages.admin.admin_reports');
+});
+
+// Listings
+
+Route::get('/admin/listings', function () {
+    return view('pages.admin.admin_listings');
+});
+
+Route::get('/admin/listings/create', function () {
+    return view('pages.admin.admin_listings_create');
+});
+
+// Agents
+
+Route::get('/admin/agents', function () {
+    return view('pages.admin.admin_agents');
+});
+
+Route::get('/admin/agents/create', function () {
+    return view('pages.admin.admin_agents_create');
+});
+
+// Blog
+
+Route::get('/admin/blog', function () {
+    return view('pages.admin.admin_blog');
+});
+
+Route::get('/admin/blog/create', function () {
+    return view('pages.admin.admin_blog_create');
+});
+
