@@ -53,12 +53,10 @@ Route::get('/admin/agents/create', function () {
 });
 
 // Blog
-
+/*
 Route::get('/admin/blog', function () {
     return view('pages.admin.admin_blog');
 });
-
-Route::get('/admin/blog/create', function () {
-    return view('pages.admin.admin_blog_create');
-});
+*/
+Route::Resource('/admin/blog','BlogPostController');
 

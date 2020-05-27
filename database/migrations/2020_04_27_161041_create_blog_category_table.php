@@ -16,7 +16,7 @@ class CreateBlogCategoryTable extends Migration
         Schema::create('tbl_blog_category', function (Blueprint $table) {
             $table->bigIncrements('blog_category_id');
 	    $table->string('blog_category_title', 150);
-	    $table->text('blog_categoty_body');
+	    $table->text('blog_category_body');
             $table->dateTime('created_at', 0)->useCurrent();
             $table->dateTime('updated_at', 0)->useCurrent();
         });

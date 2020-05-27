@@ -16,7 +16,7 @@ class UpdateBlogPostTable extends Migration
         Schema::table('tbl_blog_post', function (Blueprint $table) {
             //
 	    $table->foreign('fk_category_id')->references('blog_category_id')->on('tbl_blog_category')
-	    	->onDelete('cascade')->onUpdate('cascade');
+	    	->onUpdate('cascade');
         });
     }
 
