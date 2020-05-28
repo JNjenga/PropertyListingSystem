@@ -29,6 +29,8 @@ class UpdateBlogPostTable extends Migration
     {
         Schema::table('tbl_blog_post', function (Blueprint $table) {
             //
+            $table->dropForeign('tbl_blog_post_fk_category_id_foreign');
+
         });
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BlogPost;
 use App\BlogCategory;
+use DB;
 use Illuminate\Http\Request;
 
 class BlogPostController extends Controller
@@ -17,6 +18,14 @@ class BlogPostController extends Controller
     {
 	//
 	return view('pages.admin.admin_blog', ['posts' => BlogPost::all()]);
+    }
+
+    public function clientIndex()
+    {
+    //
+    $posts = DB::table('tbl_blog_post')->paginate(2);
+
+	return view('pages.blog', ['posts' => $posts]);
     }
 
     /**

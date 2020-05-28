@@ -63,3 +63,4 @@ Route::get('/admin/blog', function () {
 */
 Route::Resource('/admin/blog','BlogPostController');
 
+Route::get('/blog', 'BlogPostController@clientIndex' );
