@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,4 +64,19 @@ Route::get('/admin/blog', function () {
 */
 Route::Resource('/admin/blog','BlogPostController');
 
+<<<<<<< HEAD
 Route::get('/blog', 'BlogPostController@clientIndex' );
+=======
+Route::get('/admin/blog/create', function () {
+    return view('pages.admin.admin_blog_create');
+});
+
+Route::get('/customer/index', function () {
+    return view('pages.index');
+});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+>>>>>>> authentication
