@@ -20,6 +20,9 @@ Route::get('/', function () {
 Route::get('/listings', function () {
     return view('pages.customer.view_listings');
 });
+Route::get('/blog', function () {
+    return view('pages.blog');
+});
 
 // ------------------------ADMIN---------------------------
 Route::get('/admin', function () {
