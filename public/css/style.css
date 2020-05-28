@@ -23,3 +23,16 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+
+.bg-cover {
+  background-attachment: static;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.24) 0%,rgba(0, 0, 0, 0.513)00%), url(https://placeimg.com/1000/480/nature)
+}
+.mast{
+  padding-top : 9em;
+  padding-bottom : 9em;
+  color:white;
+}
