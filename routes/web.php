@@ -12,53 +12,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('pages.index');
-});
-// Customer
 
-Route::get('/listings', function () {
-    return view('pages.customer.view_listings');
+//open admin home page
+Route::get('/admin/admin_dash',function(){
+    return view('pages.admin_dash');
 });
 
-// ------------------------ADMIN---------------------------
-Route::get('/admin', function () {
-    return view('layouts.admin_layout');
+//view existing properties
+Route::get('/admin/view_properties', function () {
+    return view('pages.admin_listings');
 });
 
-// Reports
-
-Route::get('/admin/reports', function () {
-    return view('pages.admin.admin_reports');
+//create property
+Route::get('/admin/add_properties', function () {
+    return view('pages.admin_listings_create');
 });
-
-// Listings
-
-Route::get('/admin/listings', function () {
-    return view('pages.admin.admin_listings');
-});
-
-Route::get('/admin/listings/create', function () {
-    return view('pages.admin.admin_listings_create');
-});
-
-// Agents
-
-Route::get('/admin/agents', function () {
-    return view('pages.admin.admin_agents');
-});
-
-Route::get('/admin/agents/create', function () {
-    return view('pages.admin.admin_agents_create');
-});
-
-// Blog
-
-Route::get('/admin/blog', function () {
-    return view('pages.admin.admin_blog');
-});
-
-Route::get('/admin/blog/create', function () {
-    return view('pages.admin.admin_blog_create');
-});
-
+/*
+Route::get('admin/pages.admin_listings', 'ListingController@showDash');
