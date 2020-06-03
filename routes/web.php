@@ -27,5 +27,5 @@ Route::get('/admin/view_properties', function () {
 Route::get('/admin/add_properties', function () {
     return view('pages.admin_listings_create');
 });
-/*
-Route::get('admin/pages.admin_listings', 'ListingController@showDash');
+
+//Route::get('admin/pages.admin_listings', 'ListingController@showDash');
