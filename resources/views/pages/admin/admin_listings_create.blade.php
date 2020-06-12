@@ -14,16 +14,28 @@
                   <label for="title">property title:</label>
                   <input type="text" name="property_title" id="property_title">
              </div>
-              <div>
+            <div>
                   <label for="gender">property status:</label>
                   <select id="property_status" name="property_status">
                         <option>For sale</option>
                         <option>For Rent</option>
                   </select>
-              </div>
-              <div>
-                  <button type="submit">CREATE</button>
-              </div>
+            </div>
+            <div>
+                  <label for="gender">property category:</label>
+                  <select id="property_category" name="property_category">
+                        <option>Apartment</option>
+                        <option>Bedsitter</option>
+                        <option>Bungalow</option>
+                  </select>
+            </div>
+            <div>
+                  <label for="gender">property description:</label>
+                  <textarea id="property description" name="property description" rows="4" cols="50"></textarea>
+            </div>
+            <div>
+                <button type="submit">CREATE</button>
+            </div>
         </form>
     </div>
     <!--show-->

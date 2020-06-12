@@ -1,66 +1,94 @@
 @extends('layouts.admin_layout')
 
+<!---bar chart to show sales by month---->
+<!---pie chart to show property sales by categories---->
+@extends('layouts.admin_layout')
+
 
 @section('content')
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Charts</h1>
-          <p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme. The charts below have been customized - for further customization options, please visit the <a target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>
 
-          <!-- Content Row -->
-          <div class="row">
+	<div class="tcard">
+		<h1>PROPERTIES</h1>
+		<table>
+			<tr>
+				<th>Property ID</th>
+				<th>Sales_id</th>
+				<th>Property Value</th>
+        <th>month</th>
+        <th>year</th>
+        <th>category</th>
+				<th>Commision	</th>
+			</tr>
 
-            <div class="col-xl-8 col-lg-7">
+			<?php 		
+			$property = DB::table('sales_and_invoice')->get();
 
-              <!-- Area Chart -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
-                </div>
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.
-                </div>
-              </div>
+				foreach ($property as $property) {
+					echo "<tr><td>".$property->property_id;
+					echo "</td><td>".$property->sales_id;
+          echo "</td><td>".$property->property_value;
+          echo "</td><td>".$property->month;
+          echo "</td><td>".$property->year;
+          echo "</td><td>".$property->category;
+					echo "</td><td>".$property->commision."</td></tr>";
+					}
+			?>
+		</table>
+	</div>
+@endsection
+					<!--pie chart-->
+	<?php
+	//get no of sold properties by property id. complete labelling for sales by categories
 
-              <!-- Bar Chart -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-                </div>
-                <div class="card-body">
-                  <div class="chart-bar">
-                    <canvas id="myBarChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.
-                </div>
-              </div>
+	//count bungalows sold
+	$result = mysql_query("SELECT count(bungalow) from sales_and_invoice;");
+	$bungalows=mysql_result($result, 0);
 
-            </div>
+	//count bedsitters sold
+	$result1 = mysql_query("SELECT count(bedsitter) from sales_and_invoice;");
+	$bedsitters=mysql_result($result1, 0);
 
-            <!-- Donut Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
-                </div>
-              </div>
-            </div>
-          </div>
+	//count townhouse sold
+	$result2 = mysql_query("SELECT count(townhouse) from sales_and_invoice;");
+	$townhouses=mysql_result($result2, 0);
 
-        
+		$dataPoints = array(
+			array("label"=> "Bungalow", "y"=> $bungalows),
+			array("label"=> "Bedsitter", "y"=> $bedsitters),
+			array("label"=> "townhouse", "y"=> $townhouses)
+		);
+			
+		?>
+		
+	<script>
+		window.onload = function () {
+		
+		var chart = new CanvasJS.Chart("chartContainer", {
+			animationEnabled: true,
+			exportEnabled: true,
+			title:{
+				text: "Property sales by categories"
+			},
+			subtitles: [{
+				text: "Number of properties sold by category"
+			}],
+			data: [{
+				type: "pie",
+				showInLegend: "true",
+				legendText: "{label}",
+				indexLabelFontSize: 16,
+				indexLabel: "{label} - #percent%",
+				yValueFormatString: "#,##0",
+				dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+			}]
+		});
+		chart.render();
+ 
+}
+	</script>
+
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>        
 @endsection
 
 
@@ -70,7 +98,6 @@
   <script src="{{ asset('js/chart.js/Chart.min.js') }}"></script>
 
   <!-- Page level custom scripts -->
-  <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
   <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
   <script src="{{ asset('js/demo/chart-bar-demo.js') }}"></script>
 @endsection
