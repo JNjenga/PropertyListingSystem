@@ -39,9 +39,9 @@ class ListingController extends Controller
             'property_id' => $request->get('property_id'),
             'property_title' => $request->get('property_title'),
             'property_status' => $request->get('property_status'),
-            'fk_property_description_id' => $request->get('fk_property_description_id'),
             'fk_user_id' => $request->get('fk_user_id'),
-            'fk_property_category_id' => $request->get('fk_property_category_id'),
+            'property_category' => $request->get('property_category'),
+            'property description'=> $request->get('property description'),
         ]);
         $property->save();
 
@@ -81,7 +81,6 @@ class ListingController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
