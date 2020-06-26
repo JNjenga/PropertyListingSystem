@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateBlogPostTable extends Migration
+class AddRolesToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class UpdateBlogPostTable extends Migration
      */
     public function up()
     {
-        Schema::table('tbl_blog_post', function (Blueprint $table) {
-            //
-	    $table->foreign('fk_category_id')->references('blog_category_id')->on('tbl_blog_category')
-	    	->onUpdate('cascade');
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('role');
         });
     }
 
@@ -27,10 +25,8 @@ class UpdateBlogPostTable extends Migration
      */
     public function down()
     {
-        Schema::table('tbl_blog_post', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
-            $table->dropForeign('tbl_blog_post_fk_category_id_foreign');
-
         });
     }
 }

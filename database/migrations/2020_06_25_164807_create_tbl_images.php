@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTblImagesTable extends Migration
+class CreateTblImages extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,13 @@ class CreateTblImagesTable extends Migration
     public function up()
     {
         Schema::create('tbl_images', function (Blueprint $table) {
-            $table->id('image_id');
-            $table->string('image_path');
-            $table->foreignId('fk_property_id');
-            $table->timestamps();
+            $table->bigIncrements('image_id');
+            $table->string('image_path', 150);
+            $table->unsignedBigInteger('fk_property_id');
+            $table->foreign('fk_property_id')->references('property_id')->on('tbl_properties')->onUpdate('CASCADE')->onDelete('CASCADE');
+ 
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('update_at')->useCurrent();
         });
     }
 

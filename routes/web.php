@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('pages.index');
-});
+Route::get('/', 'HomeController@index_client' );
+
 // Customer
 
 Route::get('/listings', function () {
@@ -63,9 +62,15 @@ Route::get('/admin/blog', function () {
 });
 */
 
-Route::Resource('/admin/blog','BlogPostController');
+Route::Resource('/admin/blog','BlogPostController')->middleware('auth');
 
-Route::get('/blog', 'BlogPostController@clientIndex' );
+Route::get('/blog', 'BlogPostController@index_client' );
+Route::get('/blog/{id}', 'BlogPostController@show_client' )->name('blog.show_client');
+
+Route::Resource('/admin/listings','PropertyController')->middleware('auth');
+
+Route::get('/listings', 'PropertyController@index_client' );
+Route::get('/listings/{id}', 'PropertyController@show_client' )->name('listings.show_client');
 
 Auth::routes();
 

@@ -11,29 +11,35 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class PropertyCategory
+ * Class County
  * 
- * @property int $property_category_id
- * @property string $property_category_title
+ * @property int $county_id
+ * @property string $county_title
  * @property Carbon $created_at
- * @property Carbon $updated_at
+ * @property Carbon $update_at
  * 
  * @property Collection|Property[] $properties
  *
  * @package App
  */
-class PropertyCategory extends Model
+class County extends Model
 {
-	protected $table = 'tbl_property_categories';
-	protected $primaryKey = 'property_category_id';
+	protected $table = 'tbl_counties';
+	protected $primaryKey = 'county_id';
 	protected $perPage = 5;
+	public $timestamps = false;
+
+	protected $dates = [
+		'update_at'
+	];
 
 	protected $fillable = [
-		'property_category_title'
+		'county_title',
+		'update_at'
 	];
 
 	public function properties()
 	{
-		return $this->hasMany(Property::class, 'fk_property_category_id');
+		return $this->hasMany(Property::class, 'fk_county_id');
 	}
 }

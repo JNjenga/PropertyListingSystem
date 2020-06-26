@@ -4,7 +4,7 @@
  * Created by Reliese Model.
  */
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -20,16 +20,18 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Property $property
  *
- * @package App
+ * @package App\Models
  */
 class Image extends Model
 {
 	protected $table = 'tbl_images';
 	protected $primaryKey = 'image_id';
+	public $incrementing = false;
 	protected $perPage = 5;
 	public $timestamps = false;
 
 	protected $casts = [
+		'image_id' => 'int',
 		'fk_property_id' => 'int'
 	];
 

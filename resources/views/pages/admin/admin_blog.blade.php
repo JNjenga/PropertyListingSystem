@@ -6,11 +6,10 @@
 @endsection
 @section('content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more
-        information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
-            DataTables documentation</a>.</p>
-
+    <h1 class="h3 mb-2 text-gray-800">Articles </h1>
+    <div class="mb-4 mt-2">
+    <a class="btn btn-primary" href="{{ route('blog.create') }}" role="button">Create Article</a>
+    </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -23,14 +22,14 @@
                         <tr>
                             <th>Post title</th>
 			    <th>Date Created</th>
-				<th col = "2">Actions</th>
+				<th colspan="2">Actions</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Post Title</th>
                             <th>Date Created</th>
-                            <th>Actions</th>
+				<th colspan="2">Actions</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -39,16 +38,24 @@
                             <td>{{ $post->blog_post_title }}</td>
                             <td>{{ $post->created_at }}</td>
 			    <td>
-				<span>
 					<a type="button" class="btn btn-info btn-sm" href="{{ route('blog.edit', $post->blog_post_id ) }}">Edit</a>
-					<button type="button" class="btn btn-danger btn-sm">Delete</button>
-				</span>
+			    </td>
+			    <td>
+                <form action="{{ route('blog.destroy', $post->blog_post_id)}}" method="post">
+
+                  @method('DELETE')
+                  @csrf
+					<button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
 			    <td>
 			</tr>
 			@endforeach
+
                        
                     </tbody>
                 </table>
+            {!! $posts->links() !!}
+    
             </div>
         </div>
     </div>

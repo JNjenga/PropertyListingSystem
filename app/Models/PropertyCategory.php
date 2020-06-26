@@ -4,7 +4,7 @@
  * Created by Reliese Model.
  */
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,13 +20,18 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Collection|Property[] $properties
  *
- * @package App
+ * @package App\Models
  */
 class PropertyCategory extends Model
 {
 	protected $table = 'tbl_property_categories';
 	protected $primaryKey = 'property_category_id';
+	public $incrementing = false;
 	protected $perPage = 5;
+
+	protected $casts = [
+		'property_category_id' => 'int'
+	];
 
 	protected $fillable = [
 		'property_category_title'
@@ -34,6 +39,6 @@ class PropertyCategory extends Model
 
 	public function properties()
 	{
-		return $this->hasMany(Property::class, 'fk_property_category_id');
+		return $this->hasMany(Property::class, 'fk_property_category');
 	}
 }

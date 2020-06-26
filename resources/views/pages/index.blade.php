@@ -52,12 +52,11 @@
 
         <div class="col-lg-6 mb-4">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="https://placeimg.com/700/400/house" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
-                        <a href="#">3 bdrm Mansion - Karen</a>
+                        <a href="{{ route('listings.show', $prop1->property_id) }}">{{ $prop1->title }} - {{ $prop1->county->county_title }}</a>
                     </h4>
-                    <p class="card-text"><em>Ksh. 25, 000, 000</em></p>
+                    <p class="card-text"><em>Ksh. {{ $prop1->price }}</em></p>
 
                     <span class="badge badge-info">Selling</span>
                 </div>
@@ -65,12 +64,11 @@
         </div>
         <div class="col-lg-6 mb-4">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="https://placeimg.com/700/400/appartment" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
-                        <a href="#">Spacious Bedsitter - Mwihoko</a>
+                        <a href="{{ route('listings.show', $prop2->property_id) }}">{{ $prop2->title }} - {{ $prop2->county->county_title }}</a>
                     </h4>
-                    <p class="card-text"><em>Ksh. 3000 per Month</em></p>
+                    <p class="card-text"><em>{{ $prop2->price }}</em></p>
 
                     <span class="badge badge-info">Rental</span>
                 </div>
@@ -90,15 +88,10 @@
 
   <!-- Property Two -->
 <div class="row mb-3">
-  <div class="col-md-7">
-    <a href="#">
-      <img class="img-fluid rounded mb-3 mb-md-0" src="https://placeimg.com/700/400/book" alt="">
-    </a>
-  </div>
   <div class="col-md-5">
-    <h3>Article title</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, odit velit cumque vero doloremque repellendus distinctio maiores rem expedita a nam vitae modi quidem similique ducimus! Velit, esse totam tempore.</p>
-    <a class="btn btn-primary" href="#">Read More</a>
+    <h3>{{ $article1->blog_post_title}}</h3>
+    <p>{!! \Illuminate\Support\Str::limit($article1->blog_post_body, $limit = 150, $end = '...') !!}</p>
+    <a class="btn btn-primary" href="{{ route('blog.show_client', $article1->blog_post_id) }}">View Article</a>
   </div>
 </div>
 

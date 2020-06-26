@@ -8,7 +8,18 @@
 <h3>Edit Post : <em>"{{ $post->blog_post_title }}"</em></h3>
 <hr>
 
-<form>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<form method="POST" action="{{ route('blog.update', $post->blog_post_id) }}">
+@method('PATCH')
+@csrf
   <div class="form-group">
     <label for="text">Post title</label> 
     <div class="input-group">
@@ -17,13 +28,13 @@
           <i class="fa fa-address-card"></i>
         </div>
       </div> 
-      <input id="text" name="text" placeholder="Title of the article" type="text" aria-describedby="textHelpBlock" class="form-control" value="{{ $post->blog_post_title }}">
+      <input id="text" name="blog_post_title" placeholder="Title of the article" type="text" aria-describedby="textHelpBlock" class="form-control" value="{{ $post->blog_post_title }}">
     </div> 
     <span id="textHelpBlock" class="form-text text-muted">E.g What home is best for you?</span>
   </div>
   <div class="form-group">
     <label for="textarea">Body</label> 
-    <textarea id="textarea" name="textarea" cols="40" rows="15" class="form-control" aria-describedby="textareaHelpBlock">
+    <textarea id="textarea" name="blog_post_body" cols="40" rows="15" class="form-control" aria-describedby="textareaHelpBlock">
 {!! $post->blog_post_body !!} 
 </textarea> 
     <span id="textareaHelpBlock" class="form-text text-muted">Article content</span>
@@ -31,11 +42,11 @@
   <div class="form-group">
     <label for="select">Select</label> 
     <div>
-      <select id="select" name="select" class="custom-select" aria-describedby="selectHelpBlock">
+      <select id="select" name="fk_blog_cateogory_id" class="custom-select" aria-describedby="selectHelpBlock">
 	@foreach($categories as $category)
-		@if($category->blog_category_id === $post->category->blog_category_id)
+		@if($category->blog_category_id === $post->blog_category->blog_category_id)
 			
-		<option value="{{$category->blog_category_id}}" selected="seleced">
+		<option value="{{ $post->blog_category->blog_category_id }}" selected="selected">
 			{{$category->blog_category_title}}
 		</option>
 		@else
@@ -47,7 +58,7 @@
     </div>
   </div> 
   <div class="form-group">
-    <a href="{{ route('blog.store', $post->blog_post_id ) }}" name="submit" type="submit" class="btn btn-info">Save</a>
+    <button name="submit" type="submit" class="btn btn-info">Save</button>
   </div>
 </form>
 @endsection

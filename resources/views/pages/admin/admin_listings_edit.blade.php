@@ -5,11 +5,11 @@
 @endsection
 @section('content')
 
-<h3>Create a new listing</h3>
+<h3>Update listing</h3>
 <hr>
-<form method="POST" action="{{ route('listings.store') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('listings.update', $property->property_id) }}" enctype="multipart/form-data">
     @csrf
-    @method("POST")
+    @method("PATCH")
   <div class="form-group">
     <label for="text">Title</label> 
     <div class="input-group">
@@ -18,42 +18,27 @@
           <i class="fa fa-address-card"></i>
         </div>
       </div> 
-      <input id="title" name="title" placeholder="Title of the property" type="text" aria-describedby="textHelpBlock" class="form-control">
+      <input id="title" name="title" value="{{ $property->title }}"placeholder="Title of the property" type="text" aria-describedby="textHelpBlock" class="form-control">
     </div> 
     <span id="textHelpBlock" class="form-text text-muted">E.g 3 acre plot in Karen</span>
   </div>
   <div class="form-group">
     <label for="textarea">Description</label> 
-    <textarea id="textarea" name="description" cols="40" rows="5" aria-describedby="textareaHelpBlock" class="form-control"></textarea> 
+    <textarea id="textarea" name="description" cols="40" rows="5"
+    aria-describedby="textareaHelpBlock" class="form-control">{!! $property->description  !!}</textarea> 
     <span id="textareaHelpBlock" class="form-text text-muted">Breif description of the listing (150 words)</span>
   </div>
-  <div class="form-group">
-    <label>Type of property</label>
-    <select class="custom-select" name="type">
-        <option selected value="">Open this select menu</option>
-        <option value="Rental">Rental</option>
-        <option value="For Sale">For Sale</option>
-        <option value="Plots and Land">Plots and Land</option>
-        <option value="">Other</option>
-    </select>
-    <span id="textareaHelpBlock" class="form-text text-muted">Breif description of the listing (150 words)</span>
-  </div>
-  <div>
-  <div class="form-group">
-<div class="custom-file">
-  <input multiple type="file" name="images[]" class="custom-file-input" id="exampleInputFile">
-  <label class="custom-file-label" for="exampleInputFile" data-browse="upload images"><i class="fas fa-image"></i>
-  Choose images</label>
-    <span id="textareaHelpBlock" class="form-text text-muted">Breif description of the listing (150 words)</span>
-</div>
-  </div>
-
 <div class="form-group">
       <select id="select" name="fk_property_category_id" class="custom-select" aria-describedby="selectHelpBlock">
         <option selected value="">Select property Category</option>
 	@foreach($categories as $category)
+    		@if($category->property_category_id == $property->property_category->property_category_id)
 			
+			<option selected value="{{$category->property_category_id}}">{{$category->property_category_title}}</option>
+		@else
 			<option value="{{$category->property_category_id}}">{{$category->property_category_title}}</option>
+		@endif
+			
 	@endforeach
       </select> 
     <span id="textareaHelpBlock" class="form-text text-muted">Breif description of the listing (150 words)</span>
@@ -61,11 +46,11 @@
 <div class="form-group">
   <div class="form-row">
     <div class="col">
-      <input type="text" class="form-control" placeholder="Bedrooms">
+      <input type="text" class="form-control" value="{{ $property->bedrooms }}" placeholder="Bedrooms">
     <span id="textareaHelpBlock" class="form-text text-muted">Breif description of the listing (150 words)</span>
     </div>
     <div class="col">
-      <input type="text" class="form-control" placeholder="Bathrooms">
+      <input type="text" class="form-control" value="{{ $property->bathrooms}}" placeholder="Bathrooms">
     <span id="textareaHelpBlock" class="form-text text-muted">Breif description of the listing (150 words)</span>
     </div>
   </div>
@@ -74,8 +59,11 @@
       <select id="select" name="fk_county_id" class="custom-select" aria-describedby="selectHelpBlock">
         <option selected value="">Select county</option>
 	@foreach($counties as $county )
-			
-			<option value="{{$county->county_id}}">{{$county->county_title}}</option>
+			@if($county->county_id === $property->fk_county_id)
+			    <option selected value="{{$county->county_id}}">{{$county->county_title}}</option>
+            @else
+			    <option value="{{$county->county_id}}">{{$county->county_title}}</option>
+            @endif
 	@endforeach
       </select> 
     <span id="textareaHelpBlock" class="form-text text-muted">Breif description of the listing (150 words)</span>
@@ -88,7 +76,7 @@
           <i class="fa fa-address-book"></i>
         </div>
       </div> 
-      <input id="text1" name="location" placeholder="Physical Address of property" type="text" aria-describedby="text1HelpBlock" class="form-control">
+      <input value="{{ $property->location }}"id="text1" name="location" placeholder="Physical Address of property" type="text" aria-describedby="text1HelpBlock" class="form-control">
     </div> 
     <span id="text1HelpBlock" class="form-text text-muted">E.g Kibera in Nairobi</span>
   </div> 
@@ -100,13 +88,13 @@
           <i class="fa fa-money"></i>
         </div>
       </div> 
-      <input id="text1" name="price" placeholder="Price" type="text" aria-describedby="text1HelpBlock" class="form-control">
+      <input id="text1" value="{{ $property->price }}" name="price" placeholder="Price" type="text" aria-describedby="text1HelpBlock" class="form-control">
     </div> 
     <span id="text1HelpBlock" class="form-text text-muted">E.g Kibera in Nairobi</span>
   </div> 
 
   <div class="form-group">
-    <button name="submit" type="submit" class="btn btn-primary">Create</button>
+    <button name="submit" type="submit" class="btn btn-primary">Update</button>
   </div>
 </form>
 @endsection

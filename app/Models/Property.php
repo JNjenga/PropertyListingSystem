@@ -4,7 +4,7 @@
  * Created by Reliese Model.
  */
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -16,37 +16,37 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $property_id
  * @property string $title
  * @property int $status
- * @property float $price
  * @property string $description
  * @property int|null $bedrooms
  * @property int|null $bathrooms
  * @property string $type
- * @property int $fk_property_category_id
+ * @property int $fk_property_category
  * @property int $fk_county_id
- * @property int $fk_user_id
  * @property string $location
+ * @property int $fk_user_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * 
- * @property County $county
  * @property PropertyCategory $property_category
+ * @property County $county
  * @property User $user
  * @property Collection|Image[] $images
  *
- * @package App
+ * @package App\Models
  */
 class Property extends Model
 {
 	protected $table = 'tbl_properties';
 	protected $primaryKey = 'property_id';
+	public $incrementing = false;
 	protected $perPage = 5;
 
 	protected $casts = [
+		'property_id' => 'int',
 		'status' => 'int',
-		'price' => 'float',
 		'bedrooms' => 'int',
 		'bathrooms' => 'int',
-		'fk_property_category_id' => 'int',
+		'fk_property_category' => 'int',
 		'fk_county_id' => 'int',
 		'fk_user_id' => 'int'
 	];
@@ -54,25 +54,24 @@ class Property extends Model
 	protected $fillable = [
 		'title',
 		'status',
-		'price',
 		'description',
 		'bedrooms',
 		'bathrooms',
 		'type',
-		'fk_property_category_id',
+		'fk_property_category',
 		'fk_county_id',
-		'fk_user_id',
-		'location'
+		'location',
+		'fk_user_id'
 	];
+
+	public function property_category()
+	{
+		return $this->belongsTo(PropertyCategory::class, 'fk_property_category');
+	}
 
 	public function county()
 	{
 		return $this->belongsTo(County::class, 'fk_county_id');
-	}
-
-	public function property_category()
-	{
-		return $this->belongsTo(PropertyCategory::class, 'fk_property_category_id');
 	}
 
 	public function user()
