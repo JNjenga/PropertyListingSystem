@@ -1,8 +1,9 @@
 @extends('layouts.admin_layout')
 
 @section('stylesheets')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 @endsection
+
 @section('content')
 
 <h3>Update listing</h3>
@@ -24,7 +25,7 @@
   </div>
   <div class="form-group">
     <label for="textarea">Description</label> 
-    <textarea id="textarea" name="description" cols="40" rows="5"
+    <textarea id="summernote" name="description"
     aria-describedby="textareaHelpBlock" class="form-control">{!! $property->description  !!}</textarea> 
     <span id="textareaHelpBlock" class="form-text text-muted">Breif description of the listing (150 words)</span>
   </div>
@@ -99,14 +100,23 @@
 </form>
 @endsection
 
-
 @section("js")
-
-<!-- Page level plugins -->
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
-<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-<!-- Page level custom scripts -->
-<script src="js/demo/datatables-demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#summernote').summernote({
+        toolbar: [
+            [ 'style', [ 'style' ] ],
+            [ 'font', [ 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear'] ],
+            [ 'fontname', [ 'fontname' ] ],
+            [ 'fontsize', [ 'fontsize' ] ],
+            [ 'color', [ 'color' ] ],
+            [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
+            [ 'table', [ 'table' ] ],
+            [ 'insert', [ 'link'] ],
+            [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ]
+        ]
+    });
+});
+</script>
 @endsection
