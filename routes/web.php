@@ -62,12 +62,20 @@ Route::get('/admin/blog', function () {
 });
 */
 
+
+Route::Resource('/admin/messages', 'MessageController');
+Route::get('/admin/messages/udpate/{id}', 'MessageController@read' )->name('messages.read');
+Route::post('/message', 'MessageController@store' )->name('message.store_client');
+
 Route::Resource('/admin/blog','BlogPostController')->middleware('auth');
 
 Route::get('/blog', 'BlogPostController@index_client' );
 Route::get('/blog/{id}', 'BlogPostController@show_client' )->name('blog.show_client');
+Route::post('/blog/cat', 'BlogPostController@add_category' )->name('blog.add_category');
 
 Route::Resource('/admin/listings','PropertyController')->middleware('auth');
+Route::post('/admin/listings/cat', 'PropertyController@add_category' )->name('listings.add_category');
+
 
 Route::get('/listings', 'PropertyController@index_client' );
 Route::get('/listings/{id}', 'PropertyController@show_client' )->name('listings.show_client');

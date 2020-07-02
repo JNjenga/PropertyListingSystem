@@ -4,20 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\PropertyRequest;
 use App\Property;
 use App\County;
 use App\PropertyCategory;
 use App\Image;
+use App\Message;
 
 class PropertyController extends Controller
 {
     public function index()
     {
         $properties = Property::latest()->simplePaginate(5);
+
+        $messages = Message::where([ 'user_id' => Auth::id(), 'seen' =>false])->take(4)->get();
         
         // return response(['data' => $properties ], 201);
-        return view('pages.admin.admin_listings', compact('properties'));
+        return view('pages.admin.admin_listings', ['properties' => $properties, 'messages' => $messages]);
     }
 
     public function index_client()
@@ -25,6 +29,14 @@ class PropertyController extends Controller
         $properties = Property::latest()->simplePaginate(3);
         return view('pages.customer.view_listings', ['properties' => $properties]);
     }
+
+    public function add_category(Request $request)
+    {
+        $category = PropertyCategory::create($request->all());
+        
+        return response(['category' => $category], 201);
+    }
+
 
     public function store(PropertyRequest $request)
     {
@@ -34,12 +46,11 @@ class PropertyController extends Controller
 
         $property = Property::create($request->all());
 
-
+        // return storage_path();
         // return $request->file('images');
         foreach ($request->file('images') as $index => $item) {
-                $path = $request->file('images')[$index]->store('public/listings/images');
-
-                Image::create(['image_path'=> substr($path,7),
+                $path = $request->file('images')[$index]->storePublicly('listings');
+                Image::create(['image_path'=> $path,
                     'fk_property_id' => $property->property_id,
                 ]);
         }
