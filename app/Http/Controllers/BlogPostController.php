@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\BlogPostRequest;
 use App\BlogCategory;
 use App\BlogPost;
@@ -20,6 +21,14 @@ class BlogPostController extends Controller
         $posts = BlogPost::latest()->simplePaginate(2);
         return view('pages.blog', ['posts' => $posts]);
     }
+
+    public function add_category(Request $request)
+    {
+        $category = BlogCategory::create($request->all());
+        
+        return response(['category' => $category], 201);
+    }
+
 
     /**
      * Show the form for creating a new resource.

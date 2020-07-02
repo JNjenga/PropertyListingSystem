@@ -1,8 +1,10 @@
 @extends('layouts.admin_layout')
 
+
 @section('stylesheets')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 @endsection
+
 @section('content')
 
 <h3>Edit Post : <em>"{{ $post->blog_post_title }}"</em></h3>
@@ -34,7 +36,7 @@
   </div>
   <div class="form-group">
     <label for="textarea">Body</label> 
-    <textarea id="textarea" name="blog_post_body" cols="40" rows="15" class="form-control" aria-describedby="textareaHelpBlock">
+    <textarea id="summernote" name="blog_post_body" cols="40" rows="15" class="form-control" aria-describedby="textareaHelpBlock">
 {!! $post->blog_post_body !!} 
 </textarea> 
     <span id="textareaHelpBlock" class="form-text text-muted">Article content</span>
@@ -63,14 +65,23 @@
 </form>
 @endsection
 
-
 @section("js")
-
-<!-- Page level plugins -->
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
-<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-<!-- Page level custom scripts -->
-<script src="js/demo/datatables-demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#summernote').summernote({
+        toolbar: [
+            [ 'style', [ 'style' ] ],
+            [ 'font', [ 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear'] ],
+            [ 'fontname', [ 'fontname' ] ],
+            [ 'fontsize', [ 'fontsize' ] ],
+            [ 'color', [ 'color' ] ],
+            [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
+            [ 'table', [ 'table' ] ],
+            [ 'insert', [ 'link'] ],
+            [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ]
+        ]
+    });
+});
+</script>
 @endsection
