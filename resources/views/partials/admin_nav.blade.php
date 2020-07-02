@@ -66,6 +66,18 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('messages.index') }}">
+            <i class="fas fa-fw fa-envelope"></i>
+            <span>Inbox</span>
+            <small class="badge badge-warning">new</small>
+        </a>
+    </li>
+
+
+    <hr class="sidebar-divider">
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
         <a class="nav-link" href="/admin/reports">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Reports</span></a>
