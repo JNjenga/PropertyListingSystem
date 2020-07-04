@@ -25,6 +25,9 @@ Route::get('/blog', function () {
 });
 
 // ------------------------ADMIN---------------------------
+//usermanagemnet
+Route::resource('/users', 'UsersController', ['except' => ['show','create','store']]);
+
 Route::get('/admin', function () {
     return view('layouts.admin_layout');
 });
@@ -82,3 +85,7 @@ Route::get('/listings/{id}', 'PropertyController@show_client' )->name('listings.
 
 Auth::routes();
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -21,6 +21,8 @@ class CreateTblMessagesTable extends Migration
             $table->boolean('seen');
             $table->boolean('read');
             $table->unsignedBigInteger('user_id')->index('tbl_messages_user_foreign');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('update_at')->useCurrent();
         });
     }
 
