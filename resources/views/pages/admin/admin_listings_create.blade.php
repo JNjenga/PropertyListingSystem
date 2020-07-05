@@ -56,7 +56,7 @@
          <label for="select">Select category</label> 
          <div class="row">
             <div class="col">
-               <select id="select_category" name="fk_property_cateogory_id" class="custom-select" aria-describedby="selectHelpBlock">
+               <select id="select_category" name="fk_property_category_id" class="custom-select" aria-describedby="selectHelpBlock">
                   @foreach($categories as $category)
 
                   <option value="{{$category->property_category_id}}">{{$category->property_category_title}}</option>

@@ -30,9 +30,19 @@ class HomeController extends Controller
 
     public function index_client()
     {
-        $prop1 = Property::latest()->get()[0];
-        $prop2 = Property::latest()->get()[1];
+
+        $properties = Property::latest()->get();
+        $prop1 = array();
+        $prop2 = array();
+
+        if($properties->count() > 1){
+            $prop1 = $properties[0];
+            $prop2 = $properties[1];
+        }else if($properties->count() == 1)
+        {
+            $prop1 = $properties[0];
+        }
         $article1 = BlogPost::latest()->get()[0];
-        return view('pages.index', compact('prop1', 'prop2', 'article1'));
+        return view('pages.index', compact('prop1',  'prop2', 'article1'));
     }
 }

@@ -41,6 +41,7 @@
 </section>
 
 <!-- /.row -->
+@isset($prop1)
 <section class="mt-10 pt-10">
     <!-- Page Heading -->
     <div class="text-center">
@@ -62,6 +63,7 @@
                 </div>
             </div>
         </div>
+@if(count($prop2) != 0)
         <div class="col-lg-6 mb-4">
             <div class="card h-100">
                 <div class="card-body">
@@ -75,8 +77,10 @@
             </div>
         </div>
     </div>
+@endif
     <!-- /.row -->
 </section>
+@endisset
 <!-- /.row -->
 <section class="mt-10 pt-10">
     <!-- Page Heading -->
