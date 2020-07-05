@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(BlogModuleSeeder::class);
+        $this->call(CountySeeder::class);
     }
 }
