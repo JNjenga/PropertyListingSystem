@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-@if(count($prop2) != 0)
+@isset($prop2)
         <div class="col-lg-6 mb-4">
             <div class="card h-100">
                 <div class="card-body">
@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-@endif
+@endisset
     <!-- /.row -->
 </section>
 @endisset
