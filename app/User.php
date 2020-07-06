@@ -63,8 +63,4 @@ class User extends Authenticatable
         return false;
     }
 
-    //properties relationship
-    public function properties(){
-        return $this->hasMany('App\Property');
-    }
 }
