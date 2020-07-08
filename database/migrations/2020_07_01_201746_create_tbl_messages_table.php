@@ -15,12 +15,16 @@ class CreateTblMessagesTable extends Migration
     {
         Schema::create('tbl_messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('property_id')->index('tbl_messages_property_foreign');
+            $table->unsignedBigInteger('property_id'); //->index('tbl_messages_property_foreign');
             $table->string('customer_email', 50);
             $table->text('message');
-            $table->boolean('seen');
-            $table->boolean('read');
-            $table->unsignedBigInteger('user_id')->index('tbl_messages_user_foreign');
+            $table->boolean('seen')->default(0);
+            $table->boolean('read')->default(0);
+            $table->unsignedBigInteger('user_id'); // ->index('tbl_messages_user_foreign');
+ 
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
+ 
         });
     }
 

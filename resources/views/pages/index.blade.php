@@ -41,7 +41,7 @@
 </section>
 
 <!-- /.row -->
-@isset($prop1)
+@isset($prop1->property_id)
 <section class="mt-10 pt-10">
     <!-- Page Heading -->
     <div class="text-center">
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-@isset($prop2)
+@isset($prop2->property_id)
         <div class="col-lg-6 mb-4">
             <div class="card h-100">
                 <div class="card-body">

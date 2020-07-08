@@ -6,7 +6,8 @@
 @endsection
 @section('content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Listings</h1>
+    <h1 class="h3 mb-2 text-gray-800">Message</h1>
+    <h1 class="h3 mb-2 text-gray-800">Inbox</h1>
 <div class="mb-4 mt-2">
     </div>
 
@@ -36,7 +37,31 @@
                     </tfoot>
                     <tbody>
 
-                        @forelse($messages as $message)
+                        @forelse($messages_all as $message)
+<!-- Modal -->
+<div class="modal fade" id="message{{$message->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Message from {{ $message->customer_email }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <textarea class="form-control" id="message-text" disabled>{{ $message->message }}</textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a type="button" class="btn btn-primary" href="mailto:{{ $message->email }}">Reply</a>
+      </div>
+    </div>
+  </div>
+</div>
                         <tr>
                             <td>{{ $loop->iteration }}</td>
 
@@ -45,6 +70,7 @@
                                 </td>
                             <td>@if($message->read) Read @else Not read @endif </td>
 			    <td>
+					<a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#message{{$message->id}}" href="{{ route('messages.read', $message->id) }}">View</a>
 					<a type="button" class="btn btn-info btn-sm" href="{{ route('messages.read', $message->id) }}">Mark as read</a>
 			    </td>
 			    <td>

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use App\Property;
 use App\BlogPost;
+use App\Message;
 
 class HomeController extends Controller
 {
@@ -25,7 +28,10 @@ class HomeController extends Controller
     public function index()
     {
         $this->middleware('auth');
-        return view('pages.admin.admin_dash');
+
+        $messages = Message::where([ 'user_id' => Auth::id(), 'seen' =>false])->take(4)->get();
+
+        return view('pages.admin.admin_dash', ['messages' => $messages]);
     }
 
     public function index_client()

@@ -30,6 +30,12 @@ class PropertyController extends Controller
         return view('pages.customer.view_listings', ['properties' => $properties]);
     }
 
+    public function search()
+    {
+        $properties = Property::latest()->simplePaginate(3);
+        return view('pages.customer.view_search_listings');
+    }
+
     public function add_category(Request $request)
     {
         $category = PropertyCategory::create($request->all());
@@ -49,23 +55,29 @@ class PropertyController extends Controller
         // return storage_path();
         // return $request->file('images');
         foreach ($request->file('images') as $index => $item) {
-                $path = $request->file('images')[$index]->storePublicly('listings');
-                Image::create(['image_path'=> $path,
-                    'fk_property_id' => $property->property_id,
-                ]);
+
+            $path = $request->file('images')[$index]->storePublicly('listings');
+
+            Image::create(['image_path'=> explode('/', $path)[1],
+                'fk_property_id' => $property->property_id,
+            ]);
         }
+
         return redirect('/admin/listings')->with('success', 'Property Created !');
     }
 
     public function create()
     {
 
+        $messages = Message::where([ 'user_id' => Auth::id(), 'seen' =>false])->take(4)->get();
+
         $counties = County::get();
         $categories = PropertyCategory::get();
 
         return view('pages.admin.admin_listings_create', [
             'counties' => $counties,
-            'categories' => $categories
+            'categories' => $categories,
+            'messages' => $messages
         ]);
 
     }
@@ -78,10 +90,13 @@ class PropertyController extends Controller
         $counties = County::get();
         $categories = PropertyCategory::get();
 
+        $messages = Message::where([ 'user_id' => Auth::id(), 'seen' =>false])->take(4)->get();
+
         return view('pages.admin.admin_listings_edit', [
             'property' => $property,
             'counties' => $counties,
-            'categories' => $categories
+            'categories' => $categories,
+            'messages' => $messages
         ]);
 
     }

@@ -69,7 +69,11 @@
         <a class="nav-link" href="{{ route('messages.index') }}">
             <i class="fas fa-fw fa-envelope"></i>
             <span>Inbox</span>
-            <small class="badge badge-warning">new</small>
+            @isset($messages)
+            @if($messages->count() > 0)
+                <small class="badge badge-warning">{{ $messages->count() ?? '' }}</small>
+            @endif
+            @endisset
         </a>
     </li>
 

@@ -25,9 +25,7 @@ Route::get('/blog', function () {
 });
 
 // ------------------------ADMIN---------------------------
-Route::get('/admin', function () {
-    return view('layouts.admin_layout');
-});
+Route::get('/admin', 'HomeController@index');
 
 // Reports
 

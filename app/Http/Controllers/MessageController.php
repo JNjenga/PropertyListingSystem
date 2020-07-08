@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\MessageRequest;
 use App\Message;
@@ -10,8 +11,9 @@ class MessageController extends Controller
 {
     public function index()
     {
-        $messages = Message::latest()->get();
-        return view('pages.admin.admin_messages', [ 'messages' => $messages]);
+        $messages_all = Message::latest()->get();
+        $messages = Message::where([ 'user_id' => Auth::id(), 'seen' =>false])->take(4)->get();
+        return view('pages.admin.admin_messages', [ 'messages' => $messages, 'messages_all' => $messages_all]);
     }
 
     public function store(MessageRequest $request)
@@ -31,9 +33,15 @@ class MessageController extends Controller
 
     public function show($id)
     {
-        $message = Message::findOrFail($id);
+        $messages = Message::where([ 'user_id' => Auth::id(), 'seen' =>false])->take(4)->get();
 
-        return response(['data', $message ], 200);
+        $message = Message::findOrFail($id);
+        $message->read = true;
+        $message->seen = true;
+
+        $message->update();
+
+        return view('pages.admin.admin_message_view', [ 'message' => $message, 'messages' => $messages]);
     }
 
     public function update(MessageRequest $request, $id)

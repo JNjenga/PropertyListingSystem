@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\BlogPostRequest;
 use App\BlogCategory;
 use App\BlogPost;
+use App\Message;
 
 class BlogPostController extends Controller
 {
@@ -13,12 +15,17 @@ class BlogPostController extends Controller
     {
         $this->middleware('auth');
         $posts = BlogPost::latest()->simplePaginate(2);
-        return view('pages.admin.admin_blog', ['posts' => $posts]);
+
+        $messages = Message::where([ 'user_id' => Auth::id(), 'seen' =>false])->take(4)->get();
+
+        return view('pages.admin.admin_blog', ['posts' => $posts,'messages' => $messages])
+            ->with('success', 'works');
     }
 
     public function index_client()
     {
         $posts = BlogPost::latest()->simplePaginate(2);
+
         return view('pages.blog', ['posts' => $posts]);
     }
 
@@ -38,7 +45,9 @@ class BlogPostController extends Controller
     public function create()
     {
 	    $categories = BlogCategory::get();
-	    return view('pages.admin.admin_blog_create', compact('categories'));
+        $messages = Message::where([ 'user_id' => Auth::id(), 'seen' =>false])->take(4)->get();
+
+	    return view('pages.admin.admin_blog_create',['categories' => $categories, 'messages' => $messages]);
 
     }
 
@@ -48,7 +57,7 @@ class BlogPostController extends Controller
 
         $blogpost = BlogPost::create($request->all());
         
-        return redirect('/admin/blog')->with('success', 'Blog Post Created!');
+        return redirect('/admin/blog')->with('success', 'Article created successfully !');
     }
 
     /**
@@ -60,9 +69,12 @@ class BlogPostController extends Controller
     public function edit($id)
     {
 	    $post = BlogPost::find($id);
-	    $categories = BlogCategory::get();
+        $categories = BlogCategory::get();
+
+        $messages = Message::where([ 'user_id' => Auth::id(), 'seen' =>false])->take(4)->get();
+
         // return $categories;
-	    return view('pages.admin.admin_blog_edit', compact('categories','post'));//->with('post');
+	    return view('pages.admin.admin_blog_edit', compact('categories','post', 'messages'));//->with('post');
     }
 
     public function show($id)
