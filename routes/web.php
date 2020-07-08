@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'HomeController@index_client' );
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/home', 'HomeController@index_client')->name('home');
 
 // Customer
 
@@ -25,6 +29,9 @@ Route::get('/blog', function () {
 });
 
 // ------------------------ADMIN---------------------------
+//usermanagemnet
+Route::resource('/users', 'UsersController', ['except' => ['show','create','store']]);
+
 Route::get('/admin', function () {
     return view('layouts.admin_layout');
 });
@@ -82,3 +89,7 @@ Route::get('/listings/{id}', 'PropertyController@show_client' )->name('listings.
 
 Auth::routes();
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
