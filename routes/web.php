@@ -80,3 +80,4 @@ Route::get('/listings/{id}', 'PropertyController@show_client' )->name('listings.
 
 Auth::routes();
 
+Route::resource('/users', 'UsersController', ['except' => ['show','create','store']]);
