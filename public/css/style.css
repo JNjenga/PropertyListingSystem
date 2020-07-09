@@ -28,3 +28,45 @@ body {
   padding-bottom : 9em;
   color:white;
 }
+
+.section_subtitle
+{
+  color: #947054;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 17px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.county{
+margin-top: 10px;
+margin-bottom: 10px;
+}
+.location{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  }
+.status{
+margin-top: 15px;
+}
+#single-listing{
+  padding-top: 80px;
+}
+.button{
+  text-align: center;
+}
+.sp{
+  color: #947054;
+  font-size: 15px;
+  font-style: italic;
+}
+#viewmore{
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+#featured{
+  margin-top: 80px;
+  margin-bottom: 50px; 
+}
