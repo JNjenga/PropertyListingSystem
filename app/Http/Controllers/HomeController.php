@@ -30,8 +30,9 @@ class HomeController extends Controller
         $this->middleware('auth');
 
         $messages = Message::where([ 'user_id' => Auth::id(), 'seen' =>false])->take(4)->get();
-
-        return view('pages.admin.admin_dash', ['messages' => $messages]);
+        $properties = Property::latest()->simplePaginate(5);
+        
+        return view('pages.admin.admin_dash', ['messages' => $messages, 'properties' => $properties]);
     }
 
     public function index_client()

@@ -6,20 +6,6 @@
         <h1 class="display-4">PLS</h1>
         <p class="lead">Discover a place
             you'll love to live</p>
-        <form class="form-inline justify-content-center">
-
-            <div class="form-group mx-sm-3 mb-2">
-                <div class="input-group">
-                    <label for="inputPassword2" class="sr-only">Property search</label>
-                    <input type="text" class="form-control" id="inputPassword2" placeholder="e.g Nairobi rentals">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-primary "><i class="fa fa-search" aria-hidden="true"></i> </button>
-                    </div>
-
-                </div>
-
-            </div>
-        </form>
     </div>
 </header>
 
@@ -72,7 +58,7 @@
         </div>
 @isset($prop2->property_id)
         <div class="col-lg-6 mb-4">
-            <d  iv class="card h-100">
+            <td  iv class="card h-100">
                 <div class="card-body">
                 @if($prop2->images->count())
             <img class="img-fluid rounded mb-3 mb-md-0" src="{{ asset('storage/'.$prop2->images[0]->image_path) }}" alt="">

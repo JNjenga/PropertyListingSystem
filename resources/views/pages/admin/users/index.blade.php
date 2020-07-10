@@ -1,21 +1,36 @@
 @extends('layouts.admin_layout')
 
 @section('content')
-<div class="container">
-    <table class="table table-sm table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
+<div class="card shadow mb-4">
+   <div class="card-header py-3">
+   </div>
+   <div class="card-body">
+      <div class="table-responsive">
+         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+               <tr>
+               <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Roles</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-            @foreach ($users as $user) 
-          <tr>      
+               </tr>
+            </thead>
+            <tfoot>
+               <tr>
+               <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Roles</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+               </tr>
+            </tfoot>
+            <tbody>
+
+            @foreach($users as $user)
+            <tr>      
     <th scope="row">{{$user->id}}</th>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
@@ -27,8 +42,10 @@
             <button class="btn btn-danger">Delete</button>
            </form></td>
           </tr>
-          @endforeach
-        </tbody>
-      </table>            
-</div>
+                  @endforeach
+                  </tbody>
+               </table>
+            </div>
+         </div>
+
 @endsection

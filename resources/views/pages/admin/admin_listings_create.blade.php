@@ -77,11 +77,11 @@
             <div class="col">
 
                <label for="select">Number of bedrooms</label> 
-               <input type="text" class="form-control" placeholder="Bedrooms">
+               <input type="text" name="bedrooms" class="form-control" placeholder="Bedrooms">
             </div>
             <div class="col">
                <label for="select">Number of bathrooms</label> 
-               <input type="text" class="form-control" placeholder="Bathrooms">
+               <input type="text" name="bathroms" class="form-control" placeholder="Bathrooms">
             </div>
          </div>
       </div>

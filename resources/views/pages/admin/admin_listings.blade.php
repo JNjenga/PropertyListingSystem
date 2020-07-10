@@ -49,7 +49,7 @@
                <td>{{ $property->price }}</td>
                <td>@if($property->status) Sold @else Not Sold @endif </td>
                <td>
-                  <a type="button" class="btn btn-info btn-sm" href="{{ route('listings.edit', $property->property_id) }}">Edit</a>
+                  <a type="button" class="btn btn-sm btn-success" href="{{ route('listings.edit', $property->property_id) }}">Edit</a>
                </td>
                <td>
                   <form action="{{ route('listings.destroy', $property->property_id)}}" method="post">

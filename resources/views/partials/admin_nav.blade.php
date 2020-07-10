@@ -70,12 +70,6 @@
 
     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="/admin/reports">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Reports</span></a>
-    </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
