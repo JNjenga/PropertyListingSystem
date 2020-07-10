@@ -39,10 +39,6 @@
            </form>
             @else
                 <a class="nav-link" href="{{ route('login') }}">Login</a>
-
-                @if (Route::has('register'))
-                    <a class="nav-link" href="{{ route('register') }}">Register</a>
-                @endif
             @endauth
        
     @endif
