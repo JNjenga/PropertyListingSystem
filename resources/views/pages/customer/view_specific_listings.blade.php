@@ -12,24 +12,10 @@
    <!-- Page Content -->
    <div class="container">
       <div class="row">
-         <div class="col-lg-9 mx-auto">
-            <div class="">
-               <h3 class="ml-3 mt-5 text-capitalize">{{ $property->title }}</h3>
-            </div>
-            <div class="card mt-4 mb-4 border-0">
-               <div class="card-body">
-                  <div class="card-text">
-                     <p>Price : <span class="badge badge-info">Ksh. {{ $property->price }}.00</span></p>
-                     <p>County : <span class="badge badge-light">{{ $property->county->county_title}}</span></p>
-                     <p>Location : <span class="badge badge-light">{{ $property->location}}</span></p>
-                     <p>Type : <span class="badge badge-light">{{ $property->type}}</span></p>
-                  </div>
-                  <hr>
-                  <p class="card-text">{!! $property->description !!}</p>
-               </div>
-            </div>
-            <!-- /.card -->
-            @if($property->images->count())
+         <div class="col-lg-9 mx-auto" id="single-listing">
+
+               <!-- images -->
+               @if($property->images->count())
             <div class="row text-center text-lg-left">
                @foreach($property->images as $image)
                <div class="col-lg-4 col-md-4 col-6 mb-4">
@@ -41,6 +27,26 @@
 
             </div>
             @endif
+            <!-- images -->
+            
+            <div class="">
+               <h5 class="ml-3 mt-4 text-capitalize">{{ $property->type }}&ensp;<span class="badge badge-info">Ksh {{ $property->price }}.00</span></h5>
+               <h3 class="ml-3 mt-4 text-capitalize"><i class="fas fa-home"></i>&ensp;{{ $property->title }}</h3>
+            </div>
+            <div class="card mt-3 mb-4 border-0">
+               <div class="card-body">
+                  <div class="card-text">
+                     <h5>County : <span class="sp">{{ $property->county->county_title}}</span></h5>
+                     <h5>Location : <span class="sp">{{ $property->location}}</span></h5>
+                     <h5>Bedrooms : <span class="sp">{{ $property->bedrooms}}</span></h5>
+                     <h5>Bathrooms : <span class="sp">{{ $property->bathrooms}}</span></h5>
+                  </div>
+                  <hr>
+                  <h5 class="section_subtitle">property description</h5>
+                  <p class="card-text">{!! $property->description !!}</p>
+               </div>
+            </div>
+         
 
             <div class="container mx-auto mb-3">
                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageform" data-whatever="@mdo">Send

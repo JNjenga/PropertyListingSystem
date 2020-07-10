@@ -21,10 +21,6 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/blog">F.A.Q</a>
-        </li>
-
-        <li class="nav-item">
           <a class="nav-link" href="/blog">About us</a>
         </li>
 

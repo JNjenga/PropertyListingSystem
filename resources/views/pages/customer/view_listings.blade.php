@@ -5,9 +5,7 @@
 <div class="container">
 
    <!-- Page Heading -->
-   <h1 class="my-4">Property listings
-      <small>Within your area</small>
-   </h1>
+   <h2 class="my-4">Featured Properties</h2>
    @forelse($properties as $property)
    <!-- Property One -->
    <div class="row">
@@ -21,8 +19,11 @@
          </a>
       </div>
       <div class="col-md-5">
-         <h3 class="text-capitalize">{{ $property->title }} - <small>{{ $property->county->county_title }} county</small></h3>
-         <p >Price : <span class="badge badge-info">Ksh. {{ $property->price}}.00</span></p>
+         
+         <h5>{{ $property->type }}&ensp;<span class="badge badge-info">Ksh {{ $property->price}}.00</span></h5>
+         <h3 class="text-capitalize">{{ $property->title }}</h3>
+         <h5 class="county"><small>{{ $property->county->county_title }}</small></h5>
+         <h4 class="location"><i class="fas fa-map-marker-alt"></i>&ensp;<small>{{ $property->location }}</small></h4>
          <p>{!! \Illuminate\Support\Str::limit($property->description, $limit = 150, $end = '...') !!}</p>
          <a class="btn btn-primary" href="{{ route('listings.show_client', $property->property_id) }}">View Property</a>
       </div>
@@ -33,7 +34,7 @@
    @empty
 
    <div class="container ml-20">
-      <h4 class="text-muted"><i>There are no listings at the moments<i></h4>
+      <h4 class="text-muted"><i>There are no listings at the moment<i></h4>
          </div>
          @endforelse
 
