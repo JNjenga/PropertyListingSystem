@@ -37,7 +37,7 @@
                     </tfoot>
                     <tbody>
 
-                        @forelse($messages_all as $message)
+                        @forelse($messages as $message)
 <!-- Modal -->
 <div class="modal fade" id="message{{$message->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -70,11 +70,11 @@
                                 </td>
                             <td>@if($message->read) Read @else Not read @endif </td>
 			    <td>
-					<a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#message{{$message->id}}" href="{{ route('messages.read', $message->id) }}">View</a>
-					<a type="button" class="btn btn-info btn-sm" href="{{ route('messages.read', $message->id) }}">Mark as read</a>
+					<a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#message{{$message->id}}" href="{{ route('message.read', $message->id) }}">View</a>
+					<a type="button" class="btn btn-info btn-sm" href="{{ route('message.read', $message->id) }}">Mark as read</a>
 			    </td>
 			    <td>
-                <form action="{{ route('messages.destroy', $message->id) }}" method="post">
+                <form action="{{ route('message.destroy', $message->id) }}" method="post">
 
                   @method('DELETE')
                   @csrf

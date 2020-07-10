@@ -18,9 +18,9 @@ class agentsMessagesController extends Controller
      */
     public function index()
     {
-        $messages_all = Message::latest()->get();
+        
         $messages = Message::where([ 'user_id' => Auth::id(), 'seen' =>false])->take(4)->get();
-        return view('pages.agent.agents_messages', [ 'messages' => $messages, 'messages_all' => $messages_all]);
+        return view('pages.agent.agents_messages', [ 'messages' => $messages]);
     }
 
     /**
@@ -110,13 +110,13 @@ class agentsMessagesController extends Controller
         $message = Message::findOrFail($id);
         $message->update(['read' => true]);
 
-        return redirect('/agents/messages')->with('success', 'Messages updated !');
+        return redirect('/agents/message')->with('success', 'Messages updated !');
     }
 
     public function destroy($id)
     {
         Message::destroy($id);
 
-        return response(['data' => null ], 204);
+        return redirect('/agents/message')->with('success', 'Messages Deleted!');
     }
 }

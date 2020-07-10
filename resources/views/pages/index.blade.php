@@ -58,7 +58,7 @@
         </div>
 @isset($prop2->property_id)
         <div class="col-lg-6 mb-4">
-            <td  iv class="card h-100">
+            <div class="card h-100">
                 <div class="card-body">
                 @if($prop2->images->count())
             <img class="img-fluid rounded mb-3 mb-md-0" src="{{ asset('storage/'.$prop2->images[0]->image_path) }}" alt="">

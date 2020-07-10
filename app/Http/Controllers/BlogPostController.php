@@ -107,6 +107,6 @@ class BlogPostController extends Controller
     {
         BlogPost::destroy($id);
 
-        return response(['data' => null ], 204);
+        return redirect('/admin/blog')->with('success', 'Blog Post Deleted!');
     }
 }

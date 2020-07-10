@@ -13,7 +13,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Blogs</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -38,14 +38,14 @@
                             <td>{{ $post->blog_post_title }}</td>
                             <td>{{ $post->created_at }}</td>
 			    <td>
-					<a type="button" class="btn btn-info btn-sm" href="{{ route('blog.edit', $post->blog_post_id ) }}">Edit</a>
+					<a type="button" class="btn btn-success" href="{{ route('blog.edit', $post->blog_post_id ) }}">Edit</a>
 			    </td>
 			    <td>
                 <form action="{{ route('blog.destroy', $post->blog_post_id)}}" method="post">
 
                   @method('DELETE')
                   @csrf
-					<button type="submit" class="btn btn-danger btn-sm" >Delete</button>
+					<button type="submit" class="btn btn-danger" >Delete</button>
                 </form>
 			    <td>
 			</tr>

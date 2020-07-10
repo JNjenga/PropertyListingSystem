@@ -89,4 +89,4 @@ Route::resource('/admin/users', 'UsersController', ['except' => ['show','create'
 
 Route::Resource('/agents/listing','agentsPropertiesController')->middleware('can:agentGate');
 Route::Resource('/agents/message', 'agentsMessagesController')->middleware('can:agentGate');
-Route::get('/agents/messages/udpate/{id}', 'agentsMessagesController@read' )->name('messages.read')->middleware('can:agentGate');
+Route::get('/agents/message/udpate/{id}', 'agentsMessagesController@read' )->name('message.read')->middleware('can:agentGate');

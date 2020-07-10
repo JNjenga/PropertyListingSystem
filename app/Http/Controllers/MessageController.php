@@ -66,6 +66,6 @@ class MessageController extends Controller
     {
         Message::destroy($id);
 
-        return response(['data' => null ], 204);
+        return redirect('/admin/messages')->with('success', 'Messages Deleted !');
     }
 }

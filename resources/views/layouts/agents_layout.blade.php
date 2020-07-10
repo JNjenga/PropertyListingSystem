@@ -10,7 +10,7 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
       <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-      <link rel="stylesheet" href="{{asset('css/app.css')}}">
+      <link href="{{ asset('css/themes/journal/bootstrap.min.css') }}" rel="stylesheet">
       <title>Property Listings  {{ $page_title ?? '' }} </title>
 
       @yield('stylesheets')

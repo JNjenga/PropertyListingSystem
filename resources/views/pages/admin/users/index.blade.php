@@ -1,6 +1,13 @@
 @extends('layouts.admin_layout')
 
+@section('stylesheets')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+@endsection
+
 @section('content')
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Users</h1>
 <div class="card shadow mb-4">
    <div class="card-header py-3">
    </div>
@@ -48,4 +55,14 @@
             </div>
          </div>
 
+@endsection
+
+@section("js")
+
+      <!-- Page level plugins -->
+      <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+      <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+      <!-- Page level custom scripts -->
+      <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 @endsection

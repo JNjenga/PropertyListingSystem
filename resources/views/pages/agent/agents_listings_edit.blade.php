@@ -47,11 +47,11 @@
 <div class="form-group">
   <div class="form-row">
     <div class="col">
-      <input type="text" class="form-control" value="{{ $property->bedrooms }}" placeholder="Bedrooms">
+      <input type="text" name="bedrooms" class="form-control" value="{{ $property->bedrooms }}" placeholder="Bedrooms">
     <span id="textareaHelpBlock" class="form-text text-muted">Breif description of the listing (150 words)</span>
     </div>
     <div class="col">
-      <input type="text" class="form-control" value="{{ $property->bathrooms}}" placeholder="Bathrooms">
+      <input type="text" name="bathrooms" class="form-control" value="{{ $property->bathrooms}}" placeholder="Bathrooms">
     <span id="textareaHelpBlock" class="form-text text-muted">Breif description of the listing (150 words)</span>
     </div>
   </div>

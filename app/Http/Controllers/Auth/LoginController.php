@@ -47,7 +47,7 @@ class LoginController extends Controller
         }
         else if (Auth::user()->hasRole('agent')){
 
-        $this->redirectTo = route('listings.index');
+        $this->redirectTo = route('listing.index');
             return $this->redirectTo;
 
         }
