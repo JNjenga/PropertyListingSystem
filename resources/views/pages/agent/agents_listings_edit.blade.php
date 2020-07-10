@@ -8,7 +8,7 @@
 
 <h3>Update listing</h3>
 <hr>
-<form method="POST" action="{{ route('listings.update', $property->property_id) }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('listing.update', $property->property_id) }}" enctype="multipart/form-data">
     @csrf
     @method("PATCH")
   <div class="form-group">

@@ -8,7 +8,7 @@
 
 <h3>Create a new listing</h3>
 <hr>
-<form method="POST" action="{{ route('listings.store') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('listing.store') }}" enctype="multipart/form-data">
    @csrf
    @method("POST")
    <div class="form-group">

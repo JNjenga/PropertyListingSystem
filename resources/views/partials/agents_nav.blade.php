@@ -31,7 +31,7 @@
 
      <!-- Nav Item - Charts -->
      <li class="nav-item">
-        <a class="nav-link" href="{{ route('messages.index') }}">
+        <a class="nav-link" href="{{ route('message.index') }}">
             <i class="fas fa-fw fa-envelope"></i>
             <span>Inbox</span>
             @isset($messages)
@@ -53,37 +53,11 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Actions</h6>
-                <a class="collapse-item" href="/agents/listings">View all</a>
-                <a class="collapse-item" href="/agents/listings/create">Create New</a>
+                <a class="collapse-item" href="/agents/listing">View all</a>
+                <a class="collapse-item" href="/agents/listing/create">Create New</a>
             </div>
         </div>
     </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-   <!-- Nav Item - Charts -->
-   <li class="nav-item">
-    <a class="nav-link" href="/agents/reports">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Reports</span></a>
-</li>
-
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-        aria-controls="collapsePages">
-        <i class="fas fa-fw fa-rss"></i>
-        <span>Blog</span>
-    </a>
-    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Actions</h6>
-            <a class="collapse-item" href="/agents/blog">View articles</a>
-            <a class="collapse-item" href="/agents/blog/create">Add article</a>
-        </div>
-    </div>
-</li>
 
 
     <!-- Divider -->

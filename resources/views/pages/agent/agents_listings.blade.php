@@ -8,7 +8,7 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">My Listings</h1>
 <div class="mb-4 mt-2">
-   <a class="btn btn-primary" href="{{ route('listings.create') }}" role="button">Create Listing</a>
+   <a class="btn btn-primary" href="{{ route('listing.create') }}" role="button">Create Listing</a>
 </div>
 
 <!-- DataTales Example -->
@@ -49,10 +49,10 @@
                <td>{{ $property->price }}</td>
                <td>@if($property->status) Sold @else Not Sold @endif </td>
                <td>
-                  <a type="button" class="btn btn-info btn-sm" href="{{ route('listings.edit', $property->property_id) }}">Edit</a>
+                  <a type="button" class="btn btn-info btn-sm" href="{{ route('listing.edit', $property->property_id) }}">Edit</a>
                </td>
                <td>
-                  <form action="{{ route('listings.destroy', $property->property_id)}}" method="post">
+                  <form action="{{ route('listing.destroy', $property->property_id)}}" method="post">
 
                      @method('DELETE')
                      @csrf

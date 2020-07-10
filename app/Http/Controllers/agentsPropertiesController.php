@@ -81,7 +81,7 @@ class agentsPropertiesController extends Controller
             ]);
         }
 
-        return redirect('/agents/listings')->with('success', 'Property Created !');
+        return redirect('/agents/listing')->with('success', 'Property Created !');
     }
 
     /**
@@ -132,7 +132,7 @@ class agentsPropertiesController extends Controller
         $property = Property::findOrFail($id);
         $property->update($request->all());
 
-        return redirect('/agents/listings')->with('success', 'Property Updated!');
+        return redirect('/agents/listing')->with('success', 'Property Updated!');
     }
 
     /**
@@ -145,6 +145,6 @@ class agentsPropertiesController extends Controller
     {
         Property::destroy($id);
 
-        return redirect('/agents/listings')->with('success', 'Property Deleted!');
+        return redirect('/agents/listing')->with('success', 'Property Deleted!');
     }
 }
