@@ -81,7 +81,7 @@
             </div>
             <div class="col">
                <label for="select">Number of bathrooms</label> 
-               <input type="text" name="bathroms" class="form-control" placeholder="Bathrooms">
+               <input type="text" name="bathrooms" class="form-control" placeholder="Bathrooms">
             </div>
          </div>
       </div>
