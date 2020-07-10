@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 Route::get('/', 'HomeController@index_client' );
-
+Route::get('/agents', 'agentsPropertiesController@index');
 // Customer
 
 Route::get('/listings', function () {
@@ -31,6 +31,10 @@ Route::get('/admin', 'HomeController@index');
 
 Route::get('/admin/reports', function () {
     return view('pages.admin.admin_reports');
+});
+
+Route::get('/agents/reports', function () {
+    return view('pages.agent.agents_reports');
 });
 
 // Listings
@@ -66,6 +70,7 @@ Route::get('/admin/messages/udpate/{id}', 'MessageController@read' )->name('mess
 Route::post('/message', 'MessageController@store' )->name('message.store_client');
 
 Route::Resource('/admin/blog','BlogPostController')->middleware('auth');
+Route::Resource('/agents/blog','agentsBlogPostController')->middleware('auth');
 
 Route::get('/blog', 'BlogPostController@index_client' );
 Route::get('/blog/{id}', 'BlogPostController@show_client' )->name('blog.show_client');
@@ -80,4 +85,8 @@ Route::get('/listings/{id}', 'PropertyController@show_client' )->name('listings.
 
 Auth::routes();
 
-Route::resource('/users', 'UsersController', ['except' => ['show','create','store']]);
+Route::resource('/admin/users', 'UsersController', ['except' => ['show','create','store']]);
+
+Route::Resource('/agents/listings','agentsPropertiesController')->middleware('auth');
+Route::Resource('/agents/messages', 'agentsMessagesController');
+Route::get('/agents/messages/udpate/{id}', 'agentsMessagesController@read' )->name('messages.read');
